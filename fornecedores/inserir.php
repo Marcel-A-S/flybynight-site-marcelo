@@ -1,3 +1,16 @@
+<?php
+require_once "../src/fornecedor_crud.php";
+
+    if($_SERVER['REQUEST_METHOD'] === "POST"){
+        $nome = $_POST['nome'];
+        inserirFornecedor($conexao, $nome);
+
+        // Apos inserir redirecionamos para lista.phpo
+        header("location:listat.php");
+
+        exit;
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
