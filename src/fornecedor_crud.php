@@ -6,7 +6,7 @@ require_once "conecta.php";
 
 // Usanda em fornecedores/lista.php
 function buscarFornecedores(PDO $conexao): array {
-    
+
     // MOntando um comando SQL para a consulta
     $sql = "SELECT * FROM fornecedores ORDER BY nome";
 
@@ -40,7 +40,7 @@ $consulta->execute();
 }
 
 // Usada em fornecedores/editar.php
-function buscarFornecedorPorId(PDO $cenexao, int $id)
+function buscarFornecedorPorId(PDO $cenexao, int $id) // buscar fornecedor por id
 {
  // Comando SQL  (atenção ao usado de parÂmetro nomeado)
   $sql ="SELECT * FROM fornecedores WHERE id = :id";
@@ -58,4 +58,20 @@ function buscarFornecedorPorId(PDO $cenexao, int $id)
  // Atenção: aqui usamos fecht() por ser tratar de UM ÚNICO array (vetor)
  return $consulta->fetch();
 
+}
+
+// Usada em fornecedores/editar.php
+function AtualizarFornecedoror(PDO $conexao, int $id, string $nome):void
+
+{
+    // Comando SQL
+    $sql = "UPDATE fornecedores SET nome = :nome WHERE id = :id";
+
+
+    // Preparar comando SQL
+    $consulta = $conexao->prepare($sql);
+
+    // Atribuir valores aos campos
+    $consulta->bindValue(":nome", $nome);
+    $consulta->bindValue(":id", $id);
 }
