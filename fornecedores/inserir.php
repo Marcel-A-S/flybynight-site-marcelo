@@ -11,6 +11,7 @@ require_once "../src/fornecedor_crud.php";
         exit;
     }
 ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
