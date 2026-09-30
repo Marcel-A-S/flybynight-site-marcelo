@@ -37,3 +37,23 @@ $consulta->bindValue(":nome", $nome);
 $consulta->execute();
 
 }
+
+// Usada em fornecedores/editar.php
+function buscarFornecedorPorId(PDO $cenexao, int $id)
+{
+ // Comando SQL  (atenção ao usado de parÂmetro nomeado)
+  $sql ="SELECT * FROM fornecedores WHERE id = :id";
+
+ // Preparação da consulta
+  $consulta = $cenexao->prepare($sql);
+
+  // Atribuição do valor recebido (em $id) ao parâmetro nomeado (:id)
+  $consulta->bindValue(":id", $id);
+
+ // Execução da consulta
+ $consulta->execute();
+
+ // Retorno dos dados como array associativo
+ // Atenção: aqui usamos fecht() por ser tratar de UM ÚNICO array (vetor)
+ return $consulta->fetch();
+}
