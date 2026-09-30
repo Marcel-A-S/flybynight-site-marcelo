@@ -6,6 +6,7 @@ require_once "conecta.php";
 
 // Usanda em fornecedores/lista.php
 function buscarFornecedores(PDO $conexao): array {
+    
     // MOntando um comando SQL para a consulta
     $sql = "SELECT * FROM fornecedores ORDER BY nome";
 
@@ -56,4 +57,5 @@ function buscarFornecedorPorId(PDO $cenexao, int $id)
  // Retorno dos dados como array associativo
  // Atenção: aqui usamos fecht() por ser tratar de UM ÚNICO array (vetor)
  return $consulta->fetch();
+
 }
