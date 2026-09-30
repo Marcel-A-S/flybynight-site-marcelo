@@ -47,14 +47,14 @@
                              <td> <?= $fornecedor["id"] ?> </td>
                              <td> <?= $fornecedor["nome"] ?> </td>
 
-   <td> 
-                     <!-- Link dinâmico
+                             <td>
+                                 <!-- Link dinâmico
                       Além de definir a página a ser aberta/navegada (no caso, editar.phpo),
                       também é necessário "informar" à página com qual registro ela irá trabalhar. POr isso, criamos um parâmetro (?id) e aplicamos à ele o valor dinâmico (id) do fornecedor-->
 
-        <a href="editar.php?id=<?= $fornecedor["id"] ?>">Editar</a>
-        <a href="excluir.php?id=<?= $fornecedor["id"] ?>" class="excluir">Excluir</a>
-   </td>
+                                 <a href="editar.php?id=<?= $fornecedor["id"] ?>">Editar</a>
+                                 <a href="excluir.php?id=<?= $fornecedor["id"] ?>" class="excluir">Excluir</a>
+                             </td>
 
                          </tr>
                      <?php endforeach; ?>
