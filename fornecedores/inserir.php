@@ -5,7 +5,7 @@ require_once "../src/fornecedor_crud.php";
         $nome = $_POST['nome'];
         inserirFornecedor($conexao, $nome);
 
-        // Apos inserir redirecionamos para lista.phpo
+        // Apos inserir redirecionamos para lista.php
         header("location:listat.php");
 
         exit;
