@@ -1,15 +1,14 @@
  <?php
+    // fornecedores/listar.php
 
+    // Importando o arquivo de fumnções crud para Fornecedor
     require_once "../src/fornecedor_crud.php";
 
     // Chamando a função (e passando os dados da conexão), erecebendo/guardando o array com os dados dos fornecedores
     $fornecedores = buscarFornecedores($conexao);
 
+    // var_drup($fornecedores);
     ?>
-
-
-
-
 
  <!DOCTYPE html>
  <html lang="pt-br">
@@ -43,13 +42,21 @@
                  </thead>
                  <tbody>
 
-                    <?php foreach($fornecedores as $fornecedor): ?>
-                     <tr>
-                         <td> <?= $fornecedor["id"] ?> </td>
-                         <td> <?= $fornecedor["nome"] ?> </td>
-                    
-                     </tr>
-<?php endforeach; ?>
+                     <?php foreach ($fornecedores as $fornecedor): ?>
+                         <tr>
+                             <td> <?= $fornecedor["id"] ?> </td>
+                             <td> <?= $fornecedor["nome"] ?> </td>
+
+   <td> 
+                     <!-- Link dinâmico
+                      Além de definir a página a ser aberta/navegada (no caso, editar.phpo),
+                      também é necessário "informar" à página com qual registro ela irá trabalhar. POr isso, criamos um parâmetro (?id) e aplicamos à ele o valor dinâmico (id) do fornecedor-->
+        <a href="editar.php?id=<?= $fornecedor["id"] ?>">Editar</a>
+     <a href="excluir.php" class="excluir">Excluir</a>
+   </td>
+
+                         </tr>
+                     <?php endforeach; ?>
 
                  </tbody>
              </table>
