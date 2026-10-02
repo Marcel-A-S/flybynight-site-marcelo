@@ -4,8 +4,6 @@ require_once "../src/loja_crud.php";
     if($_SERVER['REQUEST_METHOD'] === "POST"){
         $nome = $_POST['nome'];
         inserirLojas($conexao, $nome);
-
-        // Apos inserir redirecionamos para lista.php
         header("location:listar.php");
 
         exit;
