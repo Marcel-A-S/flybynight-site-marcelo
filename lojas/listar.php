@@ -1,3 +1,18 @@
+<?php
+
+// lojas/listar.php
+
+// Importando o arquivo de funções crud para lojas
+require_once "../src/loja_crud.php";
+
+// Chamando a função (e passando os dados da conexão),  recebendo/guardando o array com os dados das lojas
+$lojas = buscarLojas($conexao);
+
+// apenas para teste
+// var_dump($lojas);  
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -27,10 +42,32 @@
                         <th scope="col">ID</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Ações</th>
+
                     </tr>
                 </thead>
                 <tbody>
+
                     <!-- Aqui serão geradas as linhas com os dados e as ações Editar e Excluir de cada registro. -->
+                    <?php foreach ($lojas as $loja): ?>
+                        <tr>
+                            <!-- id -->
+                            <td> <?=  $loja ["id"] ?> </td>
+
+                            <!-- nome --> 
+                            <td>  <?=  $loja ["nome"]  ?> </td>
+
+
+                    <td>
+                            <!-- link editar -->
+                                <a href="editar.php?id=<?= $loja["id"] ?>">editor</a>
+
+                                <!-- link excluir -->
+                                <a href="excluir.php?id=<?= $loja["id"] ?>" class="excluir">Excluir</a>
+                            </td>
+                            
+                        </tr>
+                    <?php endforeach; ?>
+
                 </tbody>
             </table>
         </div>
