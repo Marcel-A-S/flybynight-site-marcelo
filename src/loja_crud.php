@@ -18,7 +18,18 @@ function buscarLojas(PDO $conexao): array
     return $consulta->fetchAll();
 }
 
+function inserirLojas(PDO $conexao, string $nome): void
+{
 
+    // Passo 1: definir os parâmetros nomeados
+    $sql = "INSERT INTO lojas (nome) VALUES (:nome)";
 
+    // Passo 2:preparar o comando para execução
+    $consulta = $conexao->prepare($sql);
 
+    // Passo 3: vincular o valor ao parâmetro nomeado
+    $consulta->bindValue(":nome", $nome);
 
+    // Passo 4: executar a consulta/comando no banco
+    $consulta->execute();
+}
