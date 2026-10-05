@@ -36,7 +36,8 @@ function inserirProduto(
           VALUES(:nome, :descricao, :preco,:quantidade, :fornecedor_id)";
 
           $consulta = $conexao->prepare($sql);
-
+          
+          // Atribuindo os valores recebidos pela função para cadda parâmetro no
           $consulta->bindValue(':nome', $nome);
           $consulta->bindValue(':decricao', $descricao);
           $consulta->bindValue(':preco', $preco);
