@@ -1,3 +1,11 @@
+<?php 
+//produtos/listar.php
+require_once "../src/produto_crud.php";
+$produtos = buscarProdutos($conexao);
+echo "<pre>";
+var_dump($produtos);
+echo "</pre>";
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -32,6 +40,7 @@
                 </thead>
                 <tbody>
                     <!-- Aqui serão geradas as linhas com os dados e as ações Editar e Excluir de cada registro. -->
+                    
                 </tbody>
             </table>
         </div>

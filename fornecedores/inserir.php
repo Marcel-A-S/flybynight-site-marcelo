@@ -1,13 +1,15 @@
 <?php
-require_once "../src/fornecedor_crud.php";
-
-    if($_SERVER['REQUEST_METHOD'] === "POST"){
+    // fornecedores/listar.php
+    
+    require_once "../src/fornecedor_crud.php";
+    if($_SERVER['REQUEST_METHOD'] === "POST") {
         $nome = $_POST['nome'];
         inserirFornecedor($conexao, $nome);
 
-        // Apos inserir redirecionamos para lista.php
-        header("location:listat.php");
+        // Após inserir, redirecionamento para listar.php
+        header('location:listar.php');
 
+        // E paramos qualquer outro possível script
         exit;
     }
 ?>

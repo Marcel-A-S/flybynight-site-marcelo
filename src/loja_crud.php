@@ -1,35 +1,40 @@
 <?php
-
-// src/loja_crud.php
-
+// ../src/loja_crud.php
 require_once "conecta.php";
 
-// buscar lojas
-function buscarLojas(PDO $conexao): array
-{
-
-    // Montando um comando SQL para a consulta
+function buscarLojas(PDO $conexao) : array  {
     $sql = "SELECT * FROM lojas ORDER BY nome";
-
-    // Execultar o comando e guardando o resultado da consulta
     $consulta = $conexao->query($sql);
-
-    // Retornando o resultado como um array associativo
     return $consulta->fetchAll();
 }
 
-function inserirLojas(PDO $conexao, string $nome): void
-{
-
-    // Passo 1: definir os parâmetros nomeados
+function inserirLoja(PDO $conexao, string $nome) : void {
     $sql = "INSERT INTO lojas (nome) VALUES (:nome)";
-
-    // Passo 2:preparar o comando para execução
     $consulta = $conexao->prepare($sql);
-
-    // Passo 3: vincular o valor ao parâmetro nomeado
     $consulta->bindValue(":nome", $nome);
-
-    // Passo 4: executar a consulta/comando no banco
     $consulta->execute();
 }
+
+function buscarLojaPorId(PDO $conexao, int $id) : array {
+    $sql = "SELECT * FROM lojas WHERE id = :id";
+    $consulta = $conexao->prepare($sql);
+    $consulta->bindValue(':id', $id);
+    $consulta->execute();
+    return $consulta->fetch();
+}
+
+function atualizarLoja (PDO $conexao, int $id, string $nome) : void {
+    $sql = "UPDATE lojas SET nome = :nome WHERE id = :id";
+    $consulta = $conexao->prepare($sql);
+    $consulta->bindValue(':id', $id);
+    $consulta->bindValue(':nome', $nome);
+    $consulta->execute();
+}
+
+function excluirLoja(PDO $conexao, int $id) : void {
+    $sql = "DELETE FROM lojas WHERE id = :id";
+    $consulta = $conexao->prepare($sql);
+    $consulta->bindValue(':id', $id);
+    $consulta->execute();
+}
+
