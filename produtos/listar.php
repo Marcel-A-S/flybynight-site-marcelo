@@ -43,6 +43,7 @@ $produtos = buscarProdutos($conexao);
                         <tr>
                             <td><?= $produto['id'] ?></td>
                             <td><?= $produto['nome_produto'] ?></td>
+                            <td><?= $produto['preco'] ?></td>
                             <td><?= $produto['quantidade'] ?></td>
                             <td><?= $produto['nome_fornecedor'] ?></td>
                             <td>

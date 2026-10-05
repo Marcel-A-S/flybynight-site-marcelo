@@ -3,7 +3,8 @@
 
 require_once "conecta.php";
 
-function buscarProdutos(PDO $conexao) : array {
+function buscarProdutos(PDO $conexao) : array 
+{
     $sql = "SELECT
                 produtos.id,
                 produtos.nome AS nome_produto,
@@ -14,7 +15,33 @@ function buscarProdutos(PDO $conexao) : array {
      FROM produtos JOIN fornecedores
      ON fornecedores.id =  produtos.fornecedor_id
      ORDER BY nome_produto";
-     
+
     $consulta = $conexao->query($sql);
     return $consulta->fetchAll();
 }
+
+
+function inserirProduto(
+        PDO $conexao, 
+        string $nome, 
+        string $descricao,
+        float $preco,
+        int  $quantidade, 
+        int $fornecedorId
+        ):void
+
+
+        {
+          $sql = "INSERT INTO produtos(nome, descricao, preco, quntidade, fornecedor_id)
+          VALUES(:nome, :descricao, :preco,:quantidade, :fornecedor_id)";
+
+          $consulta = $conexao->prepare($sql);
+
+          $consulta->bindValue(':nome', $nome);
+          $consulta->bindValue(':decricao', $descricao);
+          $consulta->bindValue(':preco', $preco);
+          $consulta->bindValue(':quantidade', $quantidade);
+          $consulta->bindValue(':fornecedor_id', $fornecedorId);
+
+          $consulta->execute();
+        }
