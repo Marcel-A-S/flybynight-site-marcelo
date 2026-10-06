@@ -24,7 +24,9 @@ $fornecedores = buscarFornecedores($conexao);
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $nome = $_POST['nome'];
-    inserirProduto($conexao, $nome);
+    $descricao = $_POST['descricao'];
+    $ = $_POST['descricao'];
+    inserirProduto($conexao, $nome,);
     header("location:listar.php");
     exit;
 }
