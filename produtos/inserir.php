@@ -13,23 +13,24 @@ $fornecedores = buscarFornecedores($conexao);
               /* Exercícios: */
 
 // 1) Detectar o acionamento do formulário de inscrição
-
+if($_SERVER["REQUEST_METHOD"] === "POST"){
 // 2) Capturar os dados do formulário
+$nome = $_POST['nome'];
+$descricao = $_POST['descricao'];
+$preco = $_POST['preco'];
+$quantidade = $_POST['quantidade'];
+$fornecedor = $_POST['fornecedor'];
 
 // 3) Chamar a função de inserir e passar os dados para ela
+inserirProduto($conexao, $nome, $descricao, $preco, $quantidade, $fornecedor);
 
 // 4) Redirecionar para a página que mostra os produtos
-
+   header("location:listar.php");
+   exit;
+}
 // 5) Cadastre pelo menos 3 produtos (invente os dados)
 
-if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
-    $ = $_POST['descricao'];
-    inserirProduto($conexao, $nome,);
-    header("location:listar.php");
-    exit;
-}
+
 ?>
 
 <!DOCTYPE html>
