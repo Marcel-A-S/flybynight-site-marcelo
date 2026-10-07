@@ -46,7 +46,7 @@ function inserirProduto(
 
 function buscarProdutoPortId(PDO $conexao, int $id): array
 {
-  $sql = "SELECT *FROM produtos WHERE id = id";
+  $sql = "SELECT *FROM produtos WHERE id = :id";
   $consulta = $conexao->prepare($sql);
   $consulta->bindValue(":id", $id);
   $consulta->execute();
