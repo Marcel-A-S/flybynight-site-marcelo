@@ -19,6 +19,28 @@ $fornecedores = buscarFornecedores($conexao);
 $produto = buscarProdutoPortId($conexao, $id);
 
 
+// PARTE 2
+
+// 1) Detectar o acionamento do formulário de atualização
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    // 2) Capturar os dados do formulário
+
+    $nome = $_POST['nome'];
+    $descricao = $_POST['descricao'];
+    $preco = $_POST['preco'];
+    $quantidade = $_POST['quantidade'];
+    $fornecedor_id = $_POST['fornecedor']; // name do campo
+
+    // 3) Chamar a função atualizarProduto e passar os dados pra ela
+
+    atualizarProduto($conexao, $id, $nome, $descricao, $preco, $quantidade, $fornecedor_id);
+
+    // 4) Redirecionar para a página listar produtos
+    header("location:listar.php");
+    exit;
+}
+// 5) Testar: tente atualizar dados de pelo menos 3 produtos
 
 ?>
 
@@ -50,9 +72,9 @@ $produto = buscarProdutoPortId($conexao, $id);
 
         <form action="" method="post">
             <input type="hidden" name="id" value="<?= $produto['id'] ?>">
-                <div>
-            <label for="nome">Nome:</label>
-            <input value="<?= $produto['nome'] ?>" type="text" name="nome" id="nome" maxlength="100" required>
+            <div>
+                <label for="nome">Nome:</label>
+                <input value="<?= $produto['nome'] ?>" type="text" name="nome" id="nome" maxlength="100" required>
             </div>
             <div>
                 <label for="descricao">Descrição:</label>
@@ -60,11 +82,11 @@ $produto = buscarProdutoPortId($conexao, $id);
             </div>
             <div>
                 <label for="preco">Preço:</label>
-                <input value="<?= $produto['preco'] ?>" type= "number" name="preco" id="preco" min="0" step="0.01" required>
+                <input value="<?= $produto['preco'] ?>" type="number" name="preco" id="preco" min="0" step="0.01" required>
             </div>
             <div>
                 <label for="quantidade">Quantidade:</label>
-                <input value="<?= $produto['quantidade'] ?>" type= "number" name= "quantidade" id="quantidade" min= "0" step= "1" required>
+                <input value="<?= $produto['quantidade'] ?>" type="number" name="quantidade" id="quantidade" min="0" step="1" required>
 
             </div>
             <div>

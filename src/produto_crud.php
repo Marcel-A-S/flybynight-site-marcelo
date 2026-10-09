@@ -69,7 +69,7 @@ function atualizarProduto(
   int $quantidade,
   int $fornecedorId
 ): void {
-  $sql = "UPDATE 'Produtos SET
+  $sql = "UPDATE produtos SET
                nome = :nome, descricao = :descricao,
                preco = :preco, quantidade = :quantidade,
                fornecedor_id = :fornecedor_id
