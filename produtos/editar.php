@@ -49,29 +49,30 @@ $produto = buscarProdutoPortId($conexao, $id);
 
 
         <form action="" method="post">
-            <input type="hidden" name="id" value="<?= $produto['id'] ?>"
-            <div>
-                <label for="nome">Nome:</label>
-                <input value="<?= $produto['nome'] ?>" type="text" name="nome" id="nome" maxlength="100" required>
+            <input type="hidden" name="id" value="<?= $produto['id'] ?>">
+                <div>
+            <label for="nome">Nome:</label>
+            <input value="<?= $produto['nome'] ?>" type="text" name="nome" id="nome" maxlength="100" required>
             </div>
             <div>
                 <label for="descricao">Descrição:</label>
-                <textarea  name="descricao" id="descricao" rows="5"><?= $produto['descricao'] ?></textarea>
+                <textarea name="descricao" id="descricao" rows="5"><?= $produto['descricao'] ?></textarea>
             </div>
             <div>
                 <label for="preco">Preço:</label>
-                <input value="<?= $produto['preco'] ?> type="number" name="preco" id="preco" min="0" step="0.01" required>
+                <input value="<?= $produto['preco'] ?>" type= "number" name="preco" id="preco" min="0" step="0.01" required>
             </div>
             <div>
                 <label for="quantidade">Quantidade:</label>
-                <input valeu='<?=  ?> type="number" name="quantidade" id="quantidade" min="0" step="1" required>
+                <input value="<?= $produto['quantidade'] ?>" type= "number" name= "quantidade" id="quantidade" min= "0" step= "1" required>
+
             </div>
             <div>
                 <label for="fornecedor">Fornecedor:</label>
                 <select name="fornecedor" id="fornecedor" required>
                     <option value="">Selecione</option>
 
-                 
+
 
                     <!-- PARTE 1-->
                     <!-- 6) DESAFIO
@@ -84,6 +85,12 @@ $produto = buscarProdutoPortId($conexao, $id);
                         6.2) O fornecedor daquele produto que está sendo exibido,
                         já DEVE VIR SELECIONADO. Programe os recursos para isso
                         acontecer. -->
+
+                    <?php foreach ($fornecedores as $fornecedor): ?>
+                        <option <?= $fornecedor["id"] === $produto["fornecedor_id"] ? 'selected' : '' ?> value="<?= $fornecedor['id'] ?>">
+                            <?= $fornecedor['nome'] ?>
+                        </option>
+                    <?php endforeach ?>
 
                 </select>
             </div>
