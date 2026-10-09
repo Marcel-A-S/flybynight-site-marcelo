@@ -23,6 +23,9 @@ function buscarLojaPorId(PDO $conexao, int $id) : array {
     return $consulta->fetch();
 }
 
+
+
+
 function atualizarLoja (PDO $conexao, int $id, string $nome) : void {
     $sql = "UPDATE lojas SET nome = :nome WHERE id = :id";
     $consulta = $conexao->prepare($sql);
