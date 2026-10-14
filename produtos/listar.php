@@ -39,18 +39,20 @@ $produtos = buscarProdutos($conexao);
                 </thead>
                 <tbody>
 
-                    <?php foreach($produtos as $produto): ?>
-                    <tr>
-                        <td> <?= $produto['nome_produto'] ?> </td>
-                        <td> <?= $produto['preco'] ?> </td>
-                        <td> <?= $produto['quantidade'] ?> </td>
-                        <td> <?= $produto['nome_fornecedor'] ?> </td>
-                        <td>
-                            <a href="editar.php?id=<?= $produto['id'] ?>">Editar</a>
-                            <a href="excluir.php?id=<?= $produto['id'] ?>">Excluir</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                    <?php foreach ($produtos as $produto): ?>
+                        <tr>
+
+                            <td> <?= $produto['loja'] ?> </td>
+                            <td> <?= $produto['produto'] ?> </td>
+                            <td> <?= $produto['estoque'] ?> </td>
+                            <td> <?= $produto['acoes'] ?> </td>
+                            <td>
+                                <a href="editar.php?id=<?= $produto['id'] ?>">Editar</a>
+                                <a href="excluir.php?id=<?= $produto['id'] ?>">Excluir</a>
+                            </td>
+                        </tr>
+                        
+                    <?php endforeach; ?>
 
                 </tbody>
             </table>
