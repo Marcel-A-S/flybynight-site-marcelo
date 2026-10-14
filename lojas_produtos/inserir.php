@@ -1,3 +1,26 @@
+<?php
+
+$lojas_produtos = buscarLojasProdutos($conexao);
+ 
+
+// Detectar o acionamento do formulário de inscrição
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+
+// Capturar os dados do formulário
+    $loja = $_POST['loja'];
+    $produto = $_POST['produto'];
+    $estoque = $_POST['estoque'];
+
+ //Chamar a função de inserir e passar os dados para ela
+inserirLojaProduto($conexao, $loja, $produto, $estoque);
+
+ // Redirecionar para a página que mostra os produtos
+header("Location: loja_produto_crud.php" );
+exit;
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -31,6 +54,13 @@
                 <label for="produto">Produto:</label>
                 <select name="produto" id="produto" required>
                     <option value="">Selecione</option>
+
+<?php foreach ($lojas_produtos as $produto): ?>
+<option <?=  $lojas_produtos['$loja_id'] ?> value ></option>
+
+<?php endforeach; ?>
+
+
                     <!-- As opções serão preenchidas com os registros do banco de dados. -->
                 </select>
             </div>

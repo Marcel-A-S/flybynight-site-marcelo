@@ -1,6 +1,10 @@
+<?php
+require_once "../src/loja_produto_crud.php";
+$lojas_produtos = buscarLojasProdutos($conexao);
+// var_dump($lojas_produtos)
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +29,13 @@
                 <select name="loja" id="loja" required>
                     <option value="">Selecione</option>
                     <!-- As opções serão preenchidas com os registros do banco de dados. -->
+
+                    <?php foreach ($lojas_produtos as $loja_produto): ?>
+          <option <?=  $loja_produto['$loja_id'] ?> value ></option>
+
+<?php endforeach; ?>
+
+                    
                 </select>
             </div>
 
@@ -33,6 +44,12 @@
                 <select name="produto" id="produto" required>
                     <option value="">Selecione</option>
                     <!-- As opções serão preenchidas com os registros do banco de dados. -->
+
+<?php foreach ($lojas_produtos as $loja_produto): ?>
+          <option <?=  $loja_produto['$produto_id'] ?> value ></option>
+
+<?php endforeach; ?>
+
                 </select>
             </div>
             <div>

@@ -5,13 +5,15 @@ require_once "conecta.php";
 // Buscar produtos
 function buscarLojasProdutos(PDO $conexao): array
 {
-    $sql = "SELECT *
+    $sql = "SELECT
+                produtos.nome AS produto,
+                lojas.nome AS loja,
+                lojas_produtos.estoque
             FROM lojas_produtos
-            JOIN lojas
-                ON lojas.id = lojas_produtos.loja_id
-            JOIN produtos
-                ON produtos.id = lojas_produtos.produto_id
-            ORDER BY produtos.nome";
+            INNER JOIN produtos
+                ON lojas_produtos.produto_id = produtos.id
+            INNER JOIN lojas
+                ON lojas_produtos.loja_id = lojas.id";
 
     $consulta = $conexao->query($sql);
 
@@ -25,13 +27,19 @@ function inserirLojaProduto(
     string $loja,
     string $produto,
     int $estoque,
-    int $acoes,
     
+
 
 ): void {
     $sql = "INSERT INTO lojas_produtos(loja_id, produto_id, estoque)    
             VALUES(:loja_id, :produto_id, :estoque)";
-    
 
-   $consulta = $conexao->prepare($sql);
+
+    $consulta = $conexao->prepare($sql);
+    
+    $consulta->bindValue(':loja_id', $loja);
+            $consulta->bindValue(':produto_id', $produto);
+            $consulta->bindValue(':estoque', $estoque);
+ 
+            $consulta->execute();
 }
