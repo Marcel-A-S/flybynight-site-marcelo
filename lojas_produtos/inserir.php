@@ -1,6 +1,10 @@
 <?php
+require_once "../src/loja_produto_crud.php";
+require_once "../src/produto_crud.php";
+require_once "../src/loja_crud.php";
 
-$lojas_produtos = buscarLojasProdutos($conexao);
+$produtos= buscarProdutos($conexao);
+$lojas= buscarLojas($conexao);
  
 
 // Detectar o acionamento do formulário de inscrição
@@ -46,6 +50,9 @@ exit;
                 <label for="loja">Loja:</label>
                 <select name="loja" id="loja" required>
                     <option value="">Selecione</option>
+
+                    
+
                     <!-- As opções serão preenchidas com os registros do banco de dados. -->
                 </select>
             </div>
@@ -55,7 +62,7 @@ exit;
                 <select name="produto" id="produto" required>
                     <option value="">Selecione</option>
 
-<?php foreach ($lojas_produtos as $produto): ?>
+<?php foreach ($lojas_produto as $produto): ?>
 <option <?=  $lojas_produtos['$loja_id'] ?> value ></option>
 
 <?php endforeach; ?>
